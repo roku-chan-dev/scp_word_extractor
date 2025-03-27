@@ -15,7 +15,7 @@ from constants import (
     THESAURUS_API_KEY,
 )
 
-logger = logging.getLogger("scp_extractor")
+logger = logging.getLogger("scp_word_extractor")
 
 
 class APIManager:
