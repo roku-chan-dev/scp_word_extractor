@@ -1,15 +1,18 @@
 # Merriam-Webster API interaction
 
-import requests
-import time
-import logging
 import json
+import logging
+import time
 from urllib.parse import quote
+
+import requests
+
 from constants import (
-    API_KEY,
     DICTIONARY_API_BASE_URL,
-    THESAURUS_API_BASE_URL,
+    DICTIONARY_API_KEY,
     SAFE_CALL_LIMIT,
+    THESAURUS_API_BASE_URL,
+    THESAURUS_API_KEY,
 )
 
 logger = logging.getLogger("scp_extractor")
@@ -20,12 +23,13 @@ class APIManager:
 
     def __init__(self):
         """Initialize the API manager with call tracking."""
-        if not API_KEY:
+        if not DICTIONARY_API_KEY or not THESAURUS_API_KEY:
             raise ValueError(
-                "API_KEY environment variable not set. Please set MERRIAM_WEBSTER_API_KEY."
+                "API keys not set. Please set MERRIAM_WEBSTER_DICT_API_KEY and MERRIAM_WEBSTER_THES_API_KEY."
             )
 
-        self.api_key = API_KEY
+        self.dict_api_key = DICTIONARY_API_KEY
+        self.thes_api_key = THESAURUS_API_KEY
         self.call_count = 0
         self.start_time = time.time()
         logger.info("API Manager initialized")
@@ -49,7 +53,7 @@ class APIManager:
         retries = 0
         while retries <= max_retries:
             try:
-                logger.debug(f"Making API request (attempt {retries+1})")
+                logger.debug(f"Making API request (attempt {retries + 1})")
                 response = requests.get(url, timeout=10)
                 self.call_count += 1
 
@@ -62,12 +66,12 @@ class APIManager:
 
                 if response.status_code == 404:
                     # Word not found
-                    logger.info(f"Word not found in API (404)")
+                    logger.info("Word not found in API (404)")
                     return {"error": "Not Found", "status_code": 404}
 
                 if response.status_code == 429:
                     # Rate limit exceeded
-                    logger.error(f"API rate limit exceeded (429)")
+                    logger.error("API rate limit exceeded (429)")
                     return {"error": "Rate limit exceeded", "status_code": 429}
 
                 # Handle other error codes
@@ -107,7 +111,7 @@ class APIManager:
             dict or list: API response or error data
         """
         encoded_word = quote(word.lower())
-        url = f"{DICTIONARY_API_BASE_URL}{encoded_word}?key={self.api_key}"
+        url = f"{DICTIONARY_API_BASE_URL}{encoded_word}?key={self.dict_api_key}"
 
         logger.info(f"Looking up dictionary entry for '{word}'")
         result = self._make_request(url)
@@ -138,7 +142,7 @@ class APIManager:
             dict or list: API response or error data
         """
         encoded_word = quote(word.lower())
-        url = f"{THESAURUS_API_BASE_URL}{encoded_word}?key={self.api_key}"
+        url = f"{THESAURUS_API_BASE_URL}{encoded_word}?key={self.thes_api_key}"
 
         logger.info(f"Looking up thesaurus entry for '{word}'")
         result = self._make_request(url)

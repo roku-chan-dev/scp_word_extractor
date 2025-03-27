@@ -1,0 +1,55 @@
+{
+    // Enables auto-completion suggestions for imports.
+    "python.analysis.autoImportCompletions": true,
+    // Enables basic type checking provided by the Python extension (Pylance).
+    // Helps catch type errors before runtime. ('basic' or 'strict')
+    "python.analysis.typeCheckingMode": "basic",
+    // Automatically fetch from all remotes when the Git extension is running.
+    "git.autofetch": true,
+    // Remove trailing whitespace when saving files. (Applies globally)
+    "files.trimTrailingWhitespace": true,
+    // Ensure that files end with a single newline character when saving. (Applies globally)
+    "files.insertFinalNewline": true,
+    // --- Language Specific Editor Settings ---
+    // Format-on-save is enabled individually for specific languages below.
+    "[python]": {
+        // Automatically format Python code on save.
+        "editor.formatOnSave": true,
+        // Use Ruff as the default formatter for Python files.
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        // Run Ruff's fixAll action on save (auto-fixes lint errors).
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit"
+        },
+        // Display a vertical ruler at 88 characters (common Python line length).
+        "editor.rulers": [
+            88
+        ]
+    },
+    "[jsonc]": {
+        // Automatically format JSON with Comments files (like this settings.json) on save.
+        "editor.formatOnSave": true,
+        // Use VS Code's built-in JSON formatter.
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[markdown]": {
+        // Automatically format Markdown files on save.
+        "editor.formatOnSave": true,
+        // Use Prettier as the default formatter for Markdown files.
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    // --- Prettier Extension Settings (esbenp.prettier-vscode) ---
+    // These settings configure the Prettier extension globally.
+    // They primarily affect languages where Prettier is set as the formatter
+    // AND formatOnSave is enabled for that language (e.g., Markdown in this config).
+    // For project-specific rules, consider using a .prettierrc configuration file.
+    // Controls how Prettier wraps prose text (e.g., in Markdown). "always", "never", "preserve".
+    "prettier.proseWrap": "always",
+    // Specifies the line length that Prettier will wrap on.
+    "prettier.printWidth": 80,
+    // Specifies the number of spaces per indentation-level for Prettier.
+    "prettier.tabWidth": 2,
+    // Use single quotes instead of double quotes where applicable (mainly for code).
+    "prettier.singleQuote": true
+    // Note: Ensure there's no trailing comma after the last setting in the file.
+}

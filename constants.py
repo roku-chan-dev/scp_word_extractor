@@ -3,7 +3,8 @@
 import os
 
 # API Configuration
-API_KEY = os.environ.get("MERRIAM_WEBSTER_API_KEY")
+DICTIONARY_API_KEY = os.environ.get("MERRIAM_WEBSTER_DICT_API_KEY")
+THESAURUS_API_KEY = os.environ.get("MERRIAM_WEBSTER_THES_API_KEY")
 DICTIONARY_API_BASE_URL = (
     "https://www.dictionaryapi.com/api/v3/references/collegiate/json/"
 )
