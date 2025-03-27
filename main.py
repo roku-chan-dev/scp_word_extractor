@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # Main script for SCP word extraction and definition lookup
 
-import os
 import sys
 import time
 import argparse
@@ -87,7 +86,7 @@ def main():
 
     try:
         for idx, word in enumerate(words[start_idx:], start_idx):
-            logger.info(f"Processing word {idx+1}/{len(words)}: '{word}'")
+            logger.info(f"Processing word {idx + 1}/{len(words)}: '{word}'")
 
             # Dictionary lookup
             dict_result = None
@@ -143,7 +142,7 @@ def main():
                 logger.warning(f"Reached safe API call limit ({SAFE_CALL_LIMIT})")
                 logger.info(f"Last word processed: '{word}' (index {idx})")
                 if idx + 1 < len(words):
-                    logger.info(f"To resume, run with: --start-word {words[idx+1]}")
+                    logger.info(f"To resume, run with: --start-word {words[idx + 1]}")
                 break
 
             # Add a small delay between words to be nice to the API
@@ -154,12 +153,12 @@ def main():
         logger.info("Process interrupted by user")
         last_idx = idx - 1
         if last_idx >= 0 and last_idx + 1 < len(words):
-            logger.info(f"To resume, run with: --start-word {words[last_idx+1]}")
+            logger.info(f"To resume, run with: --start-word {words[last_idx + 1]}")
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}", exc_info=True)
         last_idx = idx - 1
         if last_idx >= 0 and last_idx + 1 < len(words):
-            logger.info(f"To resume, run with: --start-word {words[last_idx+1]}")
+            logger.info(f"To resume, run with: --start-word {words[last_idx + 1]}")
         raise
 
     # Report statistics
@@ -180,7 +179,7 @@ def main():
     logger.info(f"Average rate: {api_stats['calls_per_minute']:.2f} calls per minute")
 
     if last_idx < len(words) - 1:
-        logger.info(f"To resume, run with: --start-word {words[last_idx+1]}")
+        logger.info(f"To resume, run with: --start-word {words[last_idx + 1]}")
     else:
         logger.info("All words processed successfully")
 
