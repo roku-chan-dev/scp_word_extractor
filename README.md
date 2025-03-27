@@ -38,13 +38,16 @@ and save the results locally.
 
    ```bash
    # Linux/macOS
-   export MERRIAM_WEBSTER_API_KEY=your-api-key-here
+   export DICTIONARY_API_KEY=your-dictionary-api-key-here
+   export THESAURUS_API_KEY=your-thesaurus-api-key-here
 
    # Windows Command Prompt
-   set MERRIAM_WEBSTER_API_KEY=your-api-key-here
+   set DICTIONARY_API_KEY=your-dictionary-api-key-here
+   set THESAURUS_API_KEY=your-thesaurus-api-key-here
 
    # Windows PowerShell
-   $env:MERRIAM_WEBSTER_API_KEY="your-api-key-here"
+   $env:DICTIONARY_API_KEY="your-dictionary-api-key-here"
+   $env:THESAURUS_API_KEY="your-thesaurus-api-key-here"
    ```
 
 ## Usage
