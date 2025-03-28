@@ -4,7 +4,6 @@
 import sys
 import time
 import argparse
-from constants import SAFE_CALL_LIMIT
 from log_config import setup_logging
 from word_extractor import extract_unique_words_from_wikidot
 from mw_api import APIManager
@@ -136,14 +135,6 @@ def main():
                     success_count += 1
                 else:
                     error_count += 1
-
-            # Check if we've reached the safe API call limit
-            if api.call_count >= SAFE_CALL_LIMIT:
-                logger.warning(f"Reached safe API call limit ({SAFE_CALL_LIMIT})")
-                logger.info(f"Last word processed: '{word}' (index {idx})")
-                if idx + 1 < len(words):
-                    logger.info(f"To resume, run with: --start-word {words[idx + 1]}")
-                break
 
             # Add a small delay between words to be nice to the API
             time.sleep(0.1)
