@@ -46,9 +46,6 @@ class APIManager:
         Returns:
             dict or list or None: JSON response data or error information
         """
-        if self.call_count >= SAFE_CALL_LIMIT:
-            logger.warning(f"Reached safe API call limit ({SAFE_CALL_LIMIT})")
-            return {"error": "Rate limit reached", "status_code": 429}
 
         retries = 0
         while retries <= max_retries:

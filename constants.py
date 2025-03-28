@@ -14,7 +14,7 @@ THESAURUS_API_BASE_URL = (
 
 # Rate Limiting
 DAILY_API_CALL_LIMIT = 1000
-SAFE_CALL_LIMIT = 990  # Slightly under the limit to be safe
+SAFE_CALL_LIMIT = 100000  # Set a high limit to effectively disable the restriction
 
 # Paths
 DATA_DIR = "data"
