@@ -50,6 +50,7 @@
     // Specifies the number of spaces per indentation-level for Prettier.
     "prettier.tabWidth": 2,
     // Use single quotes instead of double quotes where applicable (mainly for code).
-    "prettier.singleQuote": true
+    "prettier.singleQuote": true,
+    "github.copilot.chat.localeOverride": "en"
     // Note: Ensure there's no trailing comma after the last setting in the file.
 }
