@@ -6,7 +6,7 @@ import logging
 import re
 from constants import DICTIONARY_DIR, THESAURUS_DIR
 
-logger = logging.getLogger("scp_extractor")
+logger = logging.getLogger("scp_word_extractor")
 
 
 def ensure_data_directories():
