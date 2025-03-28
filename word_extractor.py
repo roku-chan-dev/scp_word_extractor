@@ -4,7 +4,7 @@ import re
 import logging
 from constants import MIN_WORD_LENGTH
 
-logger = logging.getLogger("scp_extractor")
+logger = logging.getLogger("scp_word_extractor")
 
 
 def extract_unique_words_from_wikidot(content):

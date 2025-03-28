@@ -24,7 +24,7 @@ def setup_logging():
     )
 
     # Create logger
-    logger = logging.getLogger("scp_extractor")
+    logger = logging.getLogger("scp_word_extractor")
     logger.info("Logging initialized")
 
     return logger
